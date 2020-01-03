@@ -177,7 +177,19 @@ angular.module('ng-walkthrough', [])
 
                         //Event used when background clicked, if we use button then do nothing
                         scope.onCloseClicked = function($event) {
-                            $event.stopPropagation();
+                            if(scope.focusElement) {
+                                const bounds = scope.focusElement.getBoundingClientRect();
+                                const clicked = 
+                                    bounds.x < $event.clientX && $event.clientX < bounds.x + bounds.width &&
+                                    bounds.y < $event.clientY && $event.clientY < bounds.y + bounds.width;
+                                if (clicked) {
+                                    scope.focusElement.click();
+                                } else {
+                                    $event.stopPropagation();
+                                }
+                            } else {
+                                $event.stopPropagation();
+                            }
 
                             //if Angular only
                             if (scope.clickEvent === 'click') {
@@ -403,6 +415,7 @@ angular.module('ng-walkthrough', [])
                             $log.error('No element found with selector: ' + focusElementSelector);
                             focusElement = null;
                         }
+                        scope.focusElement = focusElement;
                         var angularElement = (focusElement)?angular.element(focusElement):null;
                         if (angularElement && angularElement.length > 0) {
                             var offsetCoordinates = getOffsetCoordinates(angularElement);
