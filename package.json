@@ -9,13 +9,13 @@
   "dependencies": {},
   "devDependencies": {
     "jasmine-core": "^2.4.1",
-    "karma": "~0.12.0",
-    "karma-jasmine": "^0.2.0",
+    "karma": "^4.4.1",
     "karma-chrome-launcher": "^0.1.4",
     "karma-cli": "~0.0.4",
-    "karma-phantomjs-launcher": "~0.1",
     "karma-firefox-launcher": "^0.1.4",
-    "karma-ng-html2js-preprocessor": "^0.1.0"
+    "karma-jasmine": "^0.2.0",
+    "karma-ng-html2js-preprocessor": "^0.1.0",
+    "karma-phantomjs-launcher": "^1.0.4"
   },
   "scripts": {
     "test": "karma start karma.conf.js --single-run"
