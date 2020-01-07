@@ -264,6 +264,8 @@ angular.module('ng-walkthrough', [])
                     };
 
                     var setArrowAndText = function(pointSubjectLeft, pointSubjectTop, pointSubjectWidth, pointSubjectHeight, paddingLeft){
+                        if (!scope.walkthroughTextElement) return;
+
                         var offsetCoordinates = getOffsetCoordinates(scope.walkthroughTextElement);
                         var startLeft = offsetCoordinates.left + offsetCoordinates.width /2;
                         var startTop = offsetCoordinates.top + offsetCoordinates.height + PADDING_ARROW_START;
