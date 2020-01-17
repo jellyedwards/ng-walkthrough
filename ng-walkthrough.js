@@ -227,6 +227,16 @@ angular.module('ng-walkthrough', [])
                         if(scope.walkthroughHoleElements) {
                             scope.walkthroughHoleElements.attr('style', holeDimensions);
                         }
+
+                        // JL set the left and width of the text to accomodate the hole
+                        if (scope.walkthroughTextElement) {
+                            var accom = (width + (2 * PADDING_HOLE));
+                            scope.walkthroughTextElement.attr('style',
+                                "left:" + accom + "px;" +
+                                "width: calc(100% - " + accom + "px);" +
+                                "margin-left: 0px; margin-right: 0px;"
+                            );
+                        }
                     };
 
                     //Check if given icon covers text
@@ -292,6 +302,11 @@ angular.module('ng-walkthrough', [])
 
                         if (scope.forceCaptionLocation === "BOTTOM"){
                             startTop -= offsetCoordinates.height;
+                        }
+
+                        // JL with TOP it can go through too
+                        if (scope.forceCaptionLocation === "TOP" && isItemOnText(arrowLeft, arrowTop, arrowRight, arrowBottom)){
+                            startTop -= offsetCoordinates.height + PADDING_ARROW_START;
                         }
 
                         var arrowSvgDom =
